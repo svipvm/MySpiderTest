@@ -30,6 +30,8 @@ data = {
     'rq': now,
     'sjmsValue': '956C06E11ABA1DDFE0530100007FC305'
 }
+# 956C06E11ABA1DDFE0530100007FC305
+
 
 res = session.post(lesson_url, headers=headers, data=data)
 print(res.status_code)
