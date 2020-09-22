@@ -22,13 +22,18 @@ with open('MusicDown.csv', 'w', newline='') as f:
     for index in range(len(title_list)):
         f_csv.writerow([title_list[index], downcount_list[index]])
 
-x_data, y_data = title_list, downcount_list
-y_data = [int(tmp.replace('万', '0000')) for tmp in y_data]
+x_data, y_data =  [], []
+with open('MusicDown.csv', 'r') as f:
+    f_csv = csv.reader(f)
+    for row in f_csv:
+        x_data.append(row[0])
+        y_data.append(row[1])
+
+y_data = [int(tmp.replace('万', '0000').replace('次', '')) for tmp in y_data]
 plt.rcParams['font.sans-serif'] = ['SimHei']
 plt.title('铃声下载数据分析')
 plt.xlabel('歌曲名称')
 plt.ylabel('下载次数')
 plt.xticks(rotation=90)
 plt.plot(x_data, y_data)
-
 plt.show()
