@@ -3,12 +3,18 @@ import os, time, re
 from base64 import b64encode
 from lxml import etree
 
+# print(int.from_bytes('%'.encode(), byteorder='big', signed=False))
+
 login_url = 'http://jiaowu.jvtc.jx.cn/jsxsd/xk/LoginToXk'
 lesson_url = "http://jiaowu.jvtc.jx.cn/jsxsd/framework/main_index_loadkb.jsp"
 
-username = os.getenv("MYNAME")
-password = os.getenv("MYWORD")
+
+# username = os.getenv("MYNAME")
+# password = os.getenv("MYWORD")
+username = input("Username:")
+password = input("Password:")
 encoded = b64encode(username.encode()) + b'%%%' + b64encode(password.encode())
+# print(encoded)
 
 data = {
     "userAccount": username,
@@ -30,7 +36,6 @@ data = {
     'rq': now,
     'sjmsValue': '956C06E11ABA1DDFE0530100007FC305'
 }
-# 956C06E11ABA1DDFE0530100007FC305
 
 
 res = session.post(lesson_url, headers=headers, data=data)
